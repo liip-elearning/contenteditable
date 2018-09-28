@@ -15,18 +15,32 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Content editable text editor integration version file.
+ * Privacy Subsystem implementation for editor_contenteditable.
  *
  * @package    editor_contenteditable
- * @copyright  1999 onwards Martin Dougiamas  {@link http://moodle.com}
- * @author Damyon Wiese <damyon@moodle.com>
+ * @copyright  2018 Andrew Nicols <andrew@nicols.co.uk>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+namespace editor_textarea\privacy;
+
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version   = 2013072602;        // The current plugin version (Date: YYYYMMDDXX)
-$plugin->requires  = 2013050100;        // Requires this Moodle version
-$plugin->component = 'editor_contenteditable';  // Full name of the plugin (used for diagnostics)
-$plugin->maturity  = MATURITY_BETA;
-$plugin->release  = 2013072601;
+/**
+ * Privacy Subsystem for editor_textarea implementing null_provider.
+ *
+ * @copyright  2018 Andrew Nicols <andrew@nicols.co.uk>
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+class provider implements \core_privacy\local\metadata\null_provider {
+
+    /**
+     * Get the language string identifier with the component's language
+     * file to explain why this plugin stores no data.
+     *
+     * @return  string
+     */
+    public static function get_reason() : string {
+        return 'privacy:metadata';
+    }
+}
